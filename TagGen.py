@@ -1,6 +1,8 @@
 import os
 import json
 import sys
+import fb_analysis
+
 from pprint import pprint
 from pyshorteners import Shortener
 
@@ -39,6 +41,19 @@ def add_tags(dict, more_tags=list()):
 
 
 if __name__ == '__main__':
+    
+    fb_obj = fb_analysis(app_id='100000101657890',app_secret=None, user_id="100000101657890")
+    fb_obj.access_token = 'CAACEdEose0cBAGwZBqL0gBFqVsX4ZC8rnZA5tjAZARJ70IljId0DD1Wc3ZA9WV6gU6gEghIjEiZBeJtYpdCkBLJTkQH542UkUxGiHiyjkzcnjcT28khX9r9Yc18Xp6kMEknpRV54ypNVcuTqn5SAVRA8r8kTloCff7ezFtfprDyWZCck8PgYrFORhvoL5fEzXTAc3E5KcuTM1ejjNxfQ6jZC'
+    fb_obj.init_fb()
+    
+    fb_obj.get_image_paths()
+    fb_obj.get_message_contents()
+    fb_obj.get_location_paths()
+    
+    fb_obj.write_message_file("Words.txt")
+    fb_obj.write_url_file("Urls.txt")
+    fb_obj.write_location_file("Location.txt")
+
     txtfile = sys.argv
     tags = []
     weight = dict();
