@@ -2,12 +2,16 @@ import facebook
 import urllib2
 import json
 import string
+import requests
 from pprint import pprint
 from nltk.corpus import stopwords
 
 class fb_analysis:
-    def __init__(self, token=None, user_id="me", graph=None, profile=None, urls=list(), messages=list(), filename=None, names=list()):
-        self.token = token
+    def __init__(self, app_id=None, app_secret=None, long_token=None, access_token=None, user_id="me", graph=None, profile=None, urls=list(), messages=list(), filename=None, names=list(),timeout=5000, proxies = None):
+        self.app_id = app_id
+        self.app_secret = app_secret
+        self.long_token=long_token
+        self.access_token = access_token
         self.user_id = user_id
         self.graph =graph
         self.profile = profile
@@ -15,35 +19,37 @@ class fb_analysis:
         self.messages=messages
         self.filename=filename
         self.names=names
+        self.timeout = timeout
+        self.proxies = proxies
     
     def init_fb(self):
-        self.graph = facebook.GraphAPI(self.token)
+        self.graph = facebook.GraphAPI(self.access_token)
         self.profile = self.graph.get_object(self.user_id)
-        
+                
     # Get the long urls of recent fb pictures
     def get_image_paths(self):
-        feed = urllib2.urlopen("https://graph.facebook.com/v2.5/me/photos?fields=id&access_token="+str(self.token)).read()
+        feed = urllib2.urlopen("https://graph.facebook.com/v2.5/me/photos?fields=id&access_token="+str(self.access_token)).read()
         parsed = json.loads(feed)
         json_dump = json.dumps(parsed, indent=4,sort_keys=True)
         photo_ids = self.extract_ids(json_dump)
         
         # For each photo id, need to get source
         for id in photo_ids:
-            url = urllib2.urlopen("https://graph.facebook.com/v2.5/"+str(id)+"?fields=images&access_token="+str(self.token)).read()
+            url = urllib2.urlopen("https://graph.facebook.com/v2.5/"+str(id)+"?fields=images&access_token="+str(self.access_token)).read()
             parsed_url = json.loads(url)
             json_dump_url = json.dumps(parsed_url, indent=4,sort_keys=True)
             self.extract_url(json_dump_url)
         
     # Get the words from recenet posts to be put into a frequency map later
     def get_message_contents(self):
-        feed = urllib2.urlopen("https://graph.facebook.com/v2.5/me/posts?access_token="+str(self.token)).read()
+        feed = urllib2.urlopen("https://graph.facebook.com/v2.5/me/posts?access_token="+str(self.access_token)).read()
         parsed = json.loads(feed)
         json_dump = json.dumps(parsed, indent=4,sort_keys=True)
         self.extract_messages(json_dump)
                 
     # Get the users most recent location
     def get_location_paths(self):
-        feed = urllib2.urlopen("https://graph.facebook.com/v2.4/me?fields=location&access_token="+str(self.token)).read()
+        feed = urllib2.urlopen("https://graph.facebook.com/v2.4/me?fields=location&access_token="+str(self.access_token)).read()
         parsed = json.loads(feed)
         json_dump = json.dumps(parsed, indent=4,sort_keys=True)
         self.extract_locName(json_dump)
@@ -119,10 +125,12 @@ class fb_analysis:
     def write_location_file(self,filename):
         with open(filename,'wb') as fout:
             for name in self.names:
-                fout.write(name+"\r\n")	                        
-        
+                fout.write(name+"\r\n")	
+   
 if __name__ == "__main__":   
-    fb_obj = fb_analysis(token="CAACEdEose0cBAHv0pn3hY63Y5GznI8c109PL6zVVCu8TOV9qirQO2QtYSXnxoBZBZAGsJVBi0k1ISqaK2t73ZAcCTkX5ZBT6SVlZCJcsMDFlOKzZCm9iji7BT8KWVfwy2J2hKqrZAP1oUAAZBNINYv7gFZAZCff5HlbwXj6Sr0OZA57xU3IYmEZBlSQbVd0QZA7EeeHLZAo1ja1OYq40KNXAGkSRdc", user_id="100000101657890")
+#app_secret='a57e46dd1a8e50677a036d0fc77e549b'
+    fb_obj = fb_analysis(app_id='100000101657890',app_secret=None, user_id="100000101657890")
+    fb_obj.access_token = 'CAACEdEose0cBAGwZBqL0gBFqVsX4ZC8rnZA5tjAZARJ70IljId0DD1Wc3ZA9WV6gU6gEghIjEiZBeJtYpdCkBLJTkQH542UkUxGiHiyjkzcnjcT28khX9r9Yc18Xp6kMEknpRV54ypNVcuTqn5SAVRA8r8kTloCff7ezFtfprDyWZCck8PgYrFORhvoL5fEzXTAc3E5KcuTM1ejjNxfQ6jZC'
     fb_obj.init_fb()
     
     fb_obj.get_image_paths()
