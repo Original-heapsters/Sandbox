@@ -130,7 +130,7 @@ class fb_analysis:
 if __name__ == "__main__":   
 #app_secret='a57e46dd1a8e50677a036d0fc77e549b'
     fb_obj = fb_analysis(app_id='100000101657890',app_secret=None, user_id="100000101657890")
-    fb_obj.access_token = 'CAACEdEose0cBAGwZBqL0gBFqVsX4ZC8rnZA5tjAZARJ70IljId0DD1Wc3ZA9WV6gU6gEghIjEiZBeJtYpdCkBLJTkQH542UkUxGiHiyjkzcnjcT28khX9r9Yc18Xp6kMEknpRV54ypNVcuTqn5SAVRA8r8kTloCff7ezFtfprDyWZCck8PgYrFORhvoL5fEzXTAc3E5KcuTM1ejjNxfQ6jZC'
+    fb_obj.access_token = 'CAACEdEose0cBADIRTzuZA4AGigQ4vmzkwQiNfaMgkQeut9Dspcl5YA2INfd8pLasPvhGALouzpmxjkGTQ1kqYvFVql9pMxfyiTgLCsKFCeKvCnWtuYF88nEOwvtvDt332amq9FmA6zMVuhuBbmsrzFZBzlz1nt6PTFNpY9WpxeBKKCzOuYngkXzsxgTRkRISG7ZAYWimTFaC6kfVNUD'
     fb_obj.init_fb()
     
     fb_obj.get_image_paths()
