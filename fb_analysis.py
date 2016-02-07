@@ -98,6 +98,8 @@ class fb_analysis:
         
         
 if __name__ == "__main__":
+    fb_obj = fb_analysis(token="CAACEdEose0cBAKBftO3m9N1almhKoEx1Hw67kP4kBBrPBaZAZBM6Db4TqXZCNjuZBtyYGlfiSe9ccVjtaNZAJXFGRGcOgHhKZBOPZCDf52baoDXyje2G6UXJjHgN8ioK9FBWfTVtBuexWBkkf2uwNHpsPade3IurhL6uzBZAgqv5cbc7ZAXJOZBg7PTzlBg8v2BU0EYYiw1CFNeD3b4voreim2", user_id="100000101657890")
+    
     
     fb_obj = fb_analysis(token="CAACEdEose0cBAAaHQ8ZCTHCVktZBZBwyezCDrUjjPnE4HcInFVW3hxC0ZCIZAEKkVBoCN1FodMgMA6SX17Xfi4UxfJtrBUZCfbm6GjT6rTzpWr4avw9dVjaJsrmumrhykhXu4FQRjMV5RFbJzv5WGG524xtX0abdqMt6zi3RUq1xGCdLEY9zg8HfRU7YVNfPGr8vka1KUu3XpsSNxMtxh7", user_id="100000101657890")
     fb_obj.init_fb()
