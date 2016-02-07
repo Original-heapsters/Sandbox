@@ -88,8 +88,8 @@
   'GET',
   {"fields":"images"},
   function(response) {
-    console.log(response);
-      document.getElementById('image').innerHTML = response.name;
+    console.log(response.images.source);
+      document.getElementById('image').innerHTML = response.images.source;
   }
 );
   }
