@@ -1,0 +1,65 @@
+Ticketmaster Discover API's
+
+Search Events
+discovery/{version}/events.{format}
+
+curl https://app.ticketmaster.com/discovery/v1/events.json?size=1&apikey={apikey}
+
+Get Event Details
+discovery/{version}/events/{id}.{format}
+
+curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5.json?apikey={apikey}
+
+
+Search Event Images
+
+discovery/{version}/events/{id}/images.{format}
+
+curl https://app.ticketmaster.com/discovery/v1/events/0B004F0401BD55E5/images.json?apikey={apikey}
+
+
+Search Attraction
+
+discovery/{version}/attractions.{format}
+
+
+curl https://app.ticketmaster.com/discovery/v1/attractions.json?apikey={apikey}
+
+
+Get Attraction Details
+
+discovery/{version}/attractions/{id}.{format}
+
+curl https://app.ticketmaster.com/discovery/v1/attractions/768011.json?apikey={apikey}
+
+
+Search Categories
+
+discovery/{version}/categories.{format}
+
+
+curl https://app.ticketmaster.com/discovery/v1/categories.json?apikey={apikey}
+
+
+Get Category Details
+
+discovery/{version}/categories/{id}.{format}
+
+curl https://app.ticketmaster.com/discovery/v1/categories/203.json?apikey={apikey}
+
+
+Search Venues
+
+discovery/{version}/venues.{format}
+
+curl https://app.ticketmaster.com/discovery/v1/venues.json?keyword=UCV&apikey={apikey}
+
+
+Get Venue Details
+
+discovery/{version}/venues/{id}.{format}
+
+
+curl https://app.ticketmaster.com/discovery/v1/venues/90150.json?apikey={apikey}
+
+
