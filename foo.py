@@ -14,6 +14,7 @@ with open('tag.txt', 'r') as txt:
     for x in txt:
         tags.append(x.split("'")[1])
 
+
 weight = dict()
 for tag in tags:
     if weight.get(tag, "empty") == ("empty"):
