@@ -4,18 +4,19 @@ import json
 from pprint import pprint
 
 class fb_analysis:
-	def __init__(self, token=None, user_id="me", graph=None, profile=None, urls=list()):
+	def __init__(self, token=None, user_id="me", graph=None, profile=None, urls=list(), messages=list(), filename=None):
 		self.token = token
 		self.user_id = user_id
 		self.graph =graph
 		self.profile = profile
 		self.urls=urls
-		
-		
-	def init_fb(self):
-		self.graph = facebook.GraphAPI(self.token)
-		self.profile = self.graph.get_object(self.user_id)
+		self.messages=messages
+		self.filename=filename
 	
+    def init_fb(self):
+        self.graph = facebook.GraphAPI(self.token)
+        self.profile = self.graph.get_object(self.user_id)
+    
 	def get_image_paths(self):
 		
 		feed = urllib2.urlopen("https://graph.facebook.com/v2.5/me/photos?fields=id&access_token="+str(self.token)).read()
@@ -31,12 +32,15 @@ class fb_analysis:
 		
 		for url in self.urls:
 			print url
-			
-			
-		feed = self.graph.get_object('/me/photos', limit=1)
 	
-	def get_message_content(self):
-		print feed
+	def get_message_contents(self):
+		feed = urllib2.urlopen("https://graph.facebook.com/v2.5/me/posts?access_token="+str(self.token)).read()
+		parsed = json.loads(feed)
+		json_dump = json.dumps(parsed, indent=4,sort_keys=True)
+		self.extract_messages(json_dump)
+		
+		for message in self.message:
+			print message
 		
 	def extract_ids(self,json_obj):
 		ids = list()
@@ -65,19 +69,33 @@ class fb_analysis:
 				self.urls.append(extracted_url.replace(",",""))		
 				in_id = False
 				
+	def extract_messages(self,json_obj):
+		messages = list()
+		for line in json_obj.splitlines():
+			if "message" in line:
+				colon_index = line.find(":")
+				extracted_msg = line[colon_index+2:].replace("\"","")
+				self.messages.append(extracted_msg)		
+	
 	def write_url_file(self,filename):
 		with open(filename,'wb') as fout:
 			for url in self.urls:
-				fout.write(url+"\r\n")
+				fout.write(url.strip()+"\r\n")
+				
+	def write_message_file(self,filename):
+			with open(filename,'wb') as fout:
+				for msg in self.messages:
+					fout.write(msg.strip()+"\r\n")				
         
 		
 		
 if __name__ == "__main__":
-	fb_obj = fb_analysis(token="CAACEdEose0cBAKBftO3m9N1almhKoEx1Hw67kP4kBBrPBaZAZBM6Db4TqXZCNjuZBtyYGlfiSe9ccVjtaNZAJXFGRGcOgHhKZBOPZCDf52baoDXyje2G6UXJjHgN8ioK9FBWfTVtBuexWBkkf2uwNHpsPade3IurhL6uzBZAgqv5cbc7ZAXJOZBg7PTzlBg8v2BU0EYYiw1CFNeD3b4voreim2", user_id="100000101657890")
 	
+    fb_obj = fb_analysis(token="CAACEdEose0cBAKBftO3m9N1almhKoEx1Hw67kP4kBBrPBaZAZBM6Db4TqXZCNjuZBtyYGlfiSe9ccVjtaNZAJXFGRGcOgHhKZBOPZCDf52baoDXyje2G6UXJjHgN8ioK9FBWfTVtBuexWBkkf2uwNHpsPade3IurhL6uzBZAgqv5cbc7ZAXJOZBg7PTzlBg8v2BU0EYYiw1CFNeD3b4voreim2", user_id="100000101657890")
 	
 	fb_obj.init_fb()
 	
 	fb_obj.get_image_paths()
+	fb_obj.get_message_contents()
 	
 	fb_obj.write_url_file("Urls.txt")
