@@ -48,6 +48,22 @@ if __name__ == '__main__':
 
     add_tags(weight, tags)
 
-    for w in sorted(weight, key = weight.get, reverse = True):
-       print(w, weight[w])
+    tags = []
+    with open('Words.txt', 'r') as txt:
+        for x in txt:
+            tags.append(x.strip())
+    add_tags(weight,tags)
+    
+    tags = []
+    with open('Location.txt', 'r') as txt:
+        for x in txt:
+            tags.append(x.strip())
+    add_tags(weight,tags)
 
+    with open('weightedTag.txt', 'w') as f:
+        for w in sorted(weight, key = weight.get, reverse = True):
+           f.write(w + "\n")
+
+    with open('weightedTag.txt', 'r') as f:
+        for x in range(1,6):
+            print(f.readline())
