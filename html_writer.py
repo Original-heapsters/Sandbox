@@ -8,12 +8,11 @@ def write_html(results):
         fout.write('<html>'+en)
         fout.write('<body>'+en)
         
+        fout.write("<h2>Top Events for Russell</h2>"+en)
+        
         for el in results:
             fout.write("<center>"+en)
-            fout.write("<h2>"+el[0]+"</h2>"+en)
-            fout.write("<img src="+el[1]+"/>"+en)
-            fout.write("<br>"+en)
-            fout.write("<a href=ticketmaster.com"+el[2]+">"+el[0]+"</a>"+en)
+            fout.write("<a href=ticketmaster.com"+el+">View on ticketmaster!</a>"+en)
             fout.write("</center>"+en)
             fout.write("<br>"+en)
             fout.write("<br>"+en)
@@ -22,5 +21,5 @@ def write_html(results):
         fout.write("</html>"+en)
         
 if __name__ == "__main__":
-    sample = (("Adeles concert", "https://pbs.twimg.com/profile_images/657199367556866048/EBEIl2ol.jpg", "ticketmaster.com"),("Adeles concert", "https://pbs.twimg.com/profile_images/657199367556866048/EBEIl2ol.jpg", "ticketmaster.com"))
+    sample = ("https://pbs.twimg.com/profile_images/657199367556866048/EBEIl2ol.jpg")
     write_html(sample)
