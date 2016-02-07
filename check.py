@@ -10,14 +10,16 @@ def main(argv):
         if len(argv) > 20:
             shortener = Shortener('TinyurlShortener')
             url = shortener.short(url.strip())
+            
     else:
         print("ERROR")
         url = "http://www.clarifai.com/img/metro-north.jpg"
 
-    command = 'curl -H "Authorization: Bearer b3A9PCVEzVkAijC1CC0qEUPNKcS9GE" --data-urlencode "url="'
-
+    command = 'curl -H "Authorization: Bearer b3A9PCVEzVkAijC1CC0qEUPNKcS9GE" --data-urlencode "url='
+    print url
     command = command + url + " https://api.clarifai.com/v1/tag/"
-    command = command + "| python -mjson.tool > test.json"
+    command = command + " | python -mjson.tool > test.json"
+    print command
     os.system(command)
 
     with open('test.json') as test:
