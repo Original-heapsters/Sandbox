@@ -1,0 +1,94 @@
+<<<<<<< HEAD
+{
+    "meta": {
+        "tag": {
+            "config": "34fb1111b4d5f67cf1b8665ebc603704",
+            "model": "general-v1.3",
+            "timestamp": 1454833507.775581
+        }
+    },
+    "results": [
+        {
+            "docid": 8582104909796762686,
+            "docid_str": "a408f5ad1bf6b5517719c2f20d92643e",
+            "local_id": "",
+            "result": {
+                "tag": {
+                    "classes": [
+                        "portrait",
+                        "people",
+                        "woman",
+                        "retro",
+                        "adult",
+                        "eyeglasses",
+                        "vintage",
+                        "eyewear",
+                        "girl",
+                        "one",
+                        "wear",
+                        "paper",
+                        "sunglasses",
+                        "two",
+                        "bill",
+                        "person",
+                        "child",
+                        "man",
+                        "painting",
+                        "art"
+                    ],
+                    "concept_ids": [
+                        "ai_TJ9wFfK5",
+                        "ai_l8TKp2h5",
+                        "ai_RQccV41p",
+                        "ai_1p2zMmqb",
+                        "ai_VPmHr5bm",
+                        "ai_wWRzHGtK",
+                        "ai_gJm9b4ts",
+                        "ai_J5tkrb20",
+                        "ai_xQbBc1zb",
+                        "ai_SVshtN54",
+                        "ai_86sS08Pw",
+                        "ai_9bHlLt8r",
+                        "ai_0ZcNtwPP",
+                        "ai_94cQBGlt",
+                        "ai_sX3FBQTx",
+                        "ai_ZKJ48TFz",
+                        "ai_qcLd7fgc",
+                        "ai_dxSG2s86",
+                        "ai_QrcQWGwJ",
+                        "ai_JBPqff8z"
+                    ],
+                    "probs": [
+                        0.9922695159912109,
+                        0.9920730590820312,
+                        0.983171820640564,
+                        0.9823293685913086,
+                        0.9697756171226501,
+                        0.9690669775009155,
+                        0.9622167944908142,
+                        0.9619999527931213,
+                        0.9398479461669922,
+                        0.9123620986938477,
+                        0.9100644588470459,
+                        0.9070471525192261,
+                        0.8997620344161987,
+                        0.8899685740470886,
+                        0.8717396855354309,
+                        0.8638347387313843,
+                        0.8599522113800049,
+                        0.8510674238204956,
+                        0.8459425568580627,
+                        0.8423242568969727
+                    ]
+                }
+            },
+            "status_code": "OK",
+            "status_msg": "OK",
+            "url": "http://tinyurl.com/jb7kdye"
+        }
+    ],
+    "status_code": "OK",
+    "status_msg": "All images in request have completed successfully. "
+}
+=======
+>>>>>>> parsing_messages
