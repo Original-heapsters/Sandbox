@@ -9,7 +9,7 @@ def main(argv):
         url = argv
         if len(argv) > 20:
             shortener = Shortener('TinyurlShortener')
-            url = shortener.short(url)
+            url = shortener.short(url.strip())
     else:
         print("ERROR")
         url = "http://www.clarifai.com/img/metro-north.jpg"
