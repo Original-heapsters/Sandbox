@@ -54,16 +54,22 @@ if __name__ == '__main__':
             tags.append(x.strip())
     add_tags(weight,tags)
     
-    tags = []
+    location = []
     with open('Location.txt', 'r') as txt:
         for x in txt:
-            tags.append(x.strip())
-    add_tags(weight,tags)
+            location.append(x.strip().split(",")[0])
 
     with open('weightedTag.txt', 'w') as f:
         for w in sorted(weight, key = weight.get, reverse = True):
            f.write(w + "\n")
 
     with open('weightedTag.txt', 'r') as f:
-        for x in range(1,6):
-            print(f.readline())
+        with open('keywords.txt', 'w') as w:
+            count = 0
+            max_count = 11
+            min_count = 4
+            for line in f:
+                if count in range(min_count, max_count):
+                    w.write(location[0] + "," + line)
+                count += 1
+            
