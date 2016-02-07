@@ -89,7 +89,10 @@
   {"fields":"images"},
   function(response) {
     console.log('Hello');
+    console.log(response.data[0].images[0].source);
+    document.getElementById('image').innerHTML = '<img src=' + response.data[0].images[0].source + '/>';
     for(var resp in response) {
+      
       var img = JSON.parse(resp.images);
       console.log(img.source);
       document.getElementById('image').innerHTML = '<img src=' + img.source + '/>';
@@ -98,7 +101,7 @@
       for(var image in data) {
         //console.log('Hello');
         //console.log(response.data.images.source);
-        /document.getElementById('image').innerHTML = '<img src=' + response.data.images.source + '/>';
+        //document.getElementById('image').innerHTML = '<img src=' + response.data.images.source + '/>';
         
       }
     }
