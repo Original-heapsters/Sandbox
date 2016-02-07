@@ -26,6 +26,7 @@ def main(argv):
     pprint(data['results'][0]['result']['tag']['classes']) 
 
 if __name__ == '__main__':
-    with open('test_url.txt', 'r') as link:
+    txtfile = sys.argv
+    with open(txtfile[1], 'r') as link:
         for x in link:
             main(x)
