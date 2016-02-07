@@ -16,6 +16,7 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+      //Pass this token for queries!
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -83,6 +84,13 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
+    FB.api('/me/photos',
+  'GET',
+  {"fields":"images"},
+  function(response) {
+      document.getElementById('image').innerHTML = response.source;
+  }
+);
   }
 </script>
 
@@ -96,6 +104,9 @@
 </fb:login-button>
 
 <div id="status">
+</div>
+
+<div id="image">
 </div>
 
 </body>
