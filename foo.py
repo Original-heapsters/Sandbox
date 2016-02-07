@@ -14,11 +14,18 @@ with open('tag.txt', 'r') as txt:
     for x in txt:
         tags.append(x.split("'")[1])
 
-#weight = {}
-#for tag in tags:
-#    if weight[tag]
-#        weight[tag]
+weight = dict()
+for tag in tags:
+    if weight.get(tag, "empty") == ("empty"):
+        weight[tag] = 1
+    else:
+        weight[tag] += 1
+    
+for w in sorted(weight, key = weight.get, reverse = True):
+    print(w, weight[w])
 
 with open('tags.txt', 'w') as txt:
-    for tag in tags:
-        txt.write(tag + "\n")
+    for w in sorted(weight, key = weight.get, reverse = True):
+        txt.write(str(w) + " " + str(weight[w]) + "\n")
+    # for tag in tags:
+    #     txt.write(tag + "\n")
