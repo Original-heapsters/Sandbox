@@ -2,6 +2,8 @@ import os
 import json
 import sys
 import fb_analysis
+import html_writer
+import ticMas_api
 
 from pprint import pprint
 from pyshorteners import Shortener
@@ -72,7 +74,7 @@ if __name__ == '__main__':
     location = []
     with open('Location.txt', 'r') as txt:
         for x in txt:
-            location.append(x.strip().split(",")[0])
+            location.append(x.strip().split(",")[0].replace(" ","%20"))
 
     with open('weightedTag.txt', 'w') as f:
         for w in sorted(weight, key = weight.get, reverse = True):
@@ -87,4 +89,21 @@ if __name__ == '__main__':
                 if count in range(min_count, max_count):
                     w.write(location[0] + "," + line)
                 count += 1
-            
+
+
+    with open('keywords.txt', 'r') as f:
+        kw = f.readline()
+
+    tickets = ticMas_api.TicMas_api()
+    tickets.get_SearchEvent_paths(kw)
+    tickets.write_url_file("TM_EvenUrl.txt")
+
+    #ht_w = html_writer()
+    
+    ev_link = []
+    with open("TM_EvenUrl.txt", 'r') as f:
+        for line in f:
+            ev_link.append(line)
+    
+    html_writer.write_html(ev_link)
+
