@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : 'your-app-id',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <p>Header...</p>
+    <fb:login-button show-faces="false" width="200" max-rows="1" scope="email,user_birthday,user_location,user_hometown" onclick="testAPI();" onlogin="Log.info('onlogin callback')">
+        Sign Up with Facebook
+    </fb:login-button>
+    <script>
+    alert('Hello, World!')
+    </script>
+
+    <p>...Footer</p>
+    FB.api('/me', function(response) {
+    console.log(response.hometown.name);
+    console.log(response.location.name);
+    });
+</body>
+</html>
+<!--
+function login() {
+FB.login(function(response) {
+    if (response.authResponse) {
+        // connected
+    testAPI();
+    } else {
+        // cancelled
+    }
+}, { scope: 'email,user_birthday,user_location,user_hometown' });
+}
+function testAPI() {
+console.log('Welcome!  Fetching your information.... ');
+FB.api('/me', function(response) {
+    console.log('Good to see you, ' + response.name + '.' + ' Email: ' +     response.email + ' Facebook ID: ' + response.id);
+  //console.log('Good to see you, ' + response.name + '.');
+  var userfirstName=response.first_name;
+  var lastName=response.last_name;
+  var useremail=response.email;
+  var usersex=response.gender;
+  var userbithday=response.birthday;
+  var homedown= response.hometown.name;
+  var location= response.location.name;
+
+    alert(homedown);
+
+});
+-->
