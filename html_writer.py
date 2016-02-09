@@ -1,9 +1,9 @@
 
-def write_html(results):
+def write_html(results, filename):
 
     en='\r\n'   
 
-    with open("results.html", "w") as fout:
+    with open(filename, "w") as fout:
         fout.write('<!DOCTYPE html>'+en)
         fout.write('<html>'+en)
         fout.write('<body>'+en)
